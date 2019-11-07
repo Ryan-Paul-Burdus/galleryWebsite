@@ -1,0 +1,101 @@
+﻿@model IEnumerable<galleryWebsiteSparta.Models.Product> 
+
+@{
+    ViewBag.Title = "Products";
+}
+
+
+@if (Model != null && Model.Count() == 1)
+{
+	foreach (galleryWebsiteSparta.Models.Product product in Model)
+	{
+		<main>
+			<div>
+				<div>
+					<a class="btn btn-primary btn-md my-0 p" href="/Home/Products" style="display:block; margin:10px 0;">&lt; Back to all products</a>
+				</div>
+				<div  class="row wow fadeIn">
+					<div class="col-md-6 mb-4" style="text-align:center;">
+						<div class="img-fluid" style="background-color: #E8563F; width: 1000px; height: 500px;" alt="@product.ProductName"></div>
+					</div>
+					<div class="col-md-6 mb-4">
+						<div>
+							<div>
+								<a>
+									<p>@product.ProductName</p>
+								</a>
+							</div>
+
+							<p>
+								@product.ProductDescription
+							</p>
+
+							<h3>
+								<span>&pound;@product.Price</span>
+							</h3>
+
+							<div>
+								@if (product.ProductAvailability)
+								{<p style="color: forestgreen;">Available</p>}
+								@if (!product.ProductAvailability)
+								{<p style="color: red;"><strike>Available</strike></p>}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	}
+}
+
+else if (Model != null && Model.Count() > 0)
+{
+<main>
+	<div style="padding-top: 1em; padding-left: 1em;">
+		<h2>Products</h2>
+	</div>
+
+	<div class="container" style="padding-top:10vmin;">
+		<section class="text-center mb-4">
+			<div class="row wow fadeIn" style="justify-content:center">
+				@foreach (galleryWebsiteSparta.Models.Product product in Model)
+				{
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="card">
+							<div class="view overlay">
+								<div class="img-fluid" style="background-color: #E8563F; width: 800px; height: 250px;" alt="@product.ProductName"></div>
+								<a href="/Home/Products/@product.ProductID">
+									<div class="mask rgba-white-slight"></div>
+								</a>
+							</div>
+							<div class="card-body text-center">
+								<a href="/Home/Products/@product.ProductID" class="grey-text">
+									<h5 style="min-height: 50px;">@product.ProductName</h5>
+								</a>
+								<h4 class="font-weight-bold purple-text">
+									<strong>&pound;@product.Price</strong>
+								</h4>
+								<div>
+									@if (product.ProductAvailability)
+									{<p style="color: forestgreen;">Available</p>}
+									@if (!product.ProductAvailability)
+									{<p style="color: red;"><strike>Available</strike></p>}
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</section>
+	</div>
+</main>
+}
+
+else
+{
+
+
+	< h3 > No Products found</ h3 >
+}
+
+

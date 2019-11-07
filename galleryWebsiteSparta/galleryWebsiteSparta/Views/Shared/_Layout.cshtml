@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="icon" type="image/png" href="~/Content/images/icons/favicon.png" />
+	<title>Sparta Online Store - @ViewBag.Title</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="padding: 0; width: 1100px; margin: auto; margin-bottom: 0; background-color: #FBF1EB; ">
+	<!-- Navigation -->
+	<div class="main-nav" style="padding-top: 0em; padding-bottom: 1em; ">
+		<div class="container" style="padding-left: 5em; padding-right: 5em;">
+			<header class="group top-nav" style="padding: 0; ">
+				<nav class="navbar logo-w navbar-left" style="margin-bottom: 0;">
+					<a class="logo" href="/Home/Index" style="font-size: 3em;">Gallery</a>
+				</nav>
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+					<span class="logo">Gallery</span>
+				</div>
+				<nav id="navbar-1" class="navbar item-nav navbar-right" style="padding-top: 2em; ">
+					<ul>
+						<li><a href="/Home/Index">Home</a></li>
+						<li><a href="/Home/Products">Products</a></li>
+						<li><a href="/Home/About">About</a></li>
+						<li><a href="/Home/Contact">Contact</a></li>
+
+						@if (Request.IsAuthenticated)
+						{
+							<li><a>Change Password</a></li>
+							<li><a>Logout</a></li>
+						}
+						@if (!Request.IsAuthenticated)
+						{
+							<li><a>@Html.ActionLink("Login", "Login", "Home")</a></li>
+							<li><a>@Html.ActionLink("Sign up", "SignUp", "Home")</a></li>
+						}
+					</ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+
+	<div class="container body-content" style="padding-left: 0; padding-right: 0; background-color: white;" >
+		@RenderBody()
+		<hr />
+		<footer>
+			<p style="margin-bottom: 0;">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>
